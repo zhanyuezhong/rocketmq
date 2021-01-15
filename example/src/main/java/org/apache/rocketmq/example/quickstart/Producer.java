@@ -48,7 +48,7 @@ public class Producer {
          */
 
         /*
-         * Launch the instance.
+         * Launch  the instance.
          */
         producer.start();
 
