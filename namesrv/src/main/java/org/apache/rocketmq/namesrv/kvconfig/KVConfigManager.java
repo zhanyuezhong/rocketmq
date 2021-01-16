@@ -169,6 +169,9 @@ public class KVConfigManager {
         return null;
     }
 
+    /**
+     * 定期打印配置
+     */
     public void printAllPeriodically() {
         try {
             this.lock.readLock().lockInterruptibly();

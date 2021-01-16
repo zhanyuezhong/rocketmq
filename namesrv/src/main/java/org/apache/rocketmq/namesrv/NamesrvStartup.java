@@ -99,6 +99,7 @@ public class NamesrvStartup {
         }
 
         if (commandLine.hasOption('p')) {
+            //打印配置到控制台？
             InternalLogger console = InternalLoggerFactory.getLogger(LoggerName.NAMESRV_CONSOLE_NAME);
             MixAll.printObjectProperties(console, namesrvConfig);
             MixAll.printObjectProperties(console, nettyServerConfig);
@@ -106,7 +107,7 @@ public class NamesrvStartup {
         }
 
         MixAll.properties2Object(ServerUtil.commandLine2Properties(commandLine), namesrvConfig);
-
+        //设置rocketmq home
         if (null == namesrvConfig.getRocketmqHome()) {
             System.out.printf("Please set the %s variable in your environment to match the location of the RocketMQ installation%n", MixAll.ROCKETMQ_HOME_ENV);
             System.exit(-2);
@@ -142,7 +143,9 @@ public class NamesrvStartup {
             controller.shutdown();
             System.exit(-3);
         }
-
+        /**
+         * 注册关闭函数
+         */
         Runtime.getRuntime().addShutdownHook(new ShutdownHookThread(log, new Callable<Void>() {
             @Override
             public Void call() throws Exception {

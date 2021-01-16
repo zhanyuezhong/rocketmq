@@ -315,12 +315,19 @@ public class MixAll {
         return properties;
     }
 
+    /**
+     * 将配置文件中的变量值赋值到对象中
+     * @param p
+     * @param object
+     */
+
     public static void properties2Object(final Properties p, final Object object) {
         Method[] methods = object.getClass().getMethods();
         for (Method method : methods) {
             String mn = method.getName();
             if (mn.startsWith("set")) {
                 try {
+                    //setPort
                     String tmp = mn.substring(4);
                     String first = mn.substring(3, 4);
 
