@@ -65,11 +65,18 @@ import org.apache.rocketmq.store.stats.BrokerStatsManager;
 
 public class DefaultMessageStore implements MessageStore {
     private static final InternalLogger log = InternalLoggerFactory.getLogger(LoggerName.STORE_LOGGER_NAME);
-
+    /**
+     * broker 各种配置的内存映射
+     */
     private final MessageStoreConfig messageStoreConfig;
     // CommitLog
+    /**
+     * commitlog 内存映射
+     */
     private final CommitLog commitLog;
-
+    /**
+     * topic的各个消费队列表
+     */
     private final ConcurrentMap<String/* topic */, ConcurrentMap<Integer/* queueId */, ConsumeQueue>> consumeQueueTable;
 
     private final FlushConsumeQueueService flushConsumeQueueService;
@@ -98,6 +105,9 @@ public class DefaultMessageStore implements MessageStore {
     private final ScheduledExecutorService scheduledExecutorService =
         Executors.newSingleThreadScheduledExecutor(new ThreadFactoryImpl("StoreScheduledThread"));
     private final BrokerStatsManager brokerStatsManager;
+    /**
+     * 消息监听
+     */
     private final MessageArrivingListener messageArrivingListener;
     private final BrokerConfig brokerConfig;
 
@@ -182,6 +192,7 @@ public class DefaultMessageStore implements MessageStore {
         boolean result = true;
 
         try {
+            //abort 文件不存在， 退出ok
             boolean lastExitOK = !this.isTempFileExist();
             log.info("last shutdown {}", lastExitOK ? "normally" : "abnormally");
 
@@ -1375,6 +1386,10 @@ public class DefaultMessageStore implements MessageStore {
         return file.exists();
     }
 
+    /**
+     * 加载消费队列
+     * @return
+     */
     private boolean loadConsumeQueue() {
         File dirLogic = new File(StorePathConfigHelper.getStorePathConsumeQueue(this.messageStoreConfig.getStorePathRootDir()));
         File[] fileTopicList = dirLogic.listFiles();

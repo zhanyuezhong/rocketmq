@@ -86,6 +86,9 @@ public class NettyRemotingServer extends NettyRemotingAbstract implements Remoti
     private static final String FILE_REGION_ENCODER_NAME = "fileRegionEncoder";
 
     // sharable handlers
+    /**
+     * 公共共享的handler？
+     */
     private HandshakeHandler handshakeHandler;
     private NettyEncoder encoder;
     private NettyConnectManageHandler connectionManageHandler;

@@ -22,6 +22,9 @@ import org.apache.rocketmq.store.ConsumeQueue;
 
 public class MessageStoreConfig {
     //The root directory in which the log data is kept
+    /**
+     * 存储文件根路径，在broker.conf中做配置
+     */
     @ImportantField
     private String storePathRootDir = System.getProperty("user.home") + File.separator + "store";
 

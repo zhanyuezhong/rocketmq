@@ -48,6 +48,12 @@ public class MappedFileQueue {
 
     private volatile long storeTimestamp = 0;
 
+    /**
+     *
+     * @param storePath commit log文件存储路径
+     * @param mappedFileSize  commit log 文件大小
+     * @param allocateMappedFileService
+     */
     public MappedFileQueue(final String storePath, int mappedFileSize,
         AllocateMappedFileService allocateMappedFileService) {
         this.storePath = storePath;

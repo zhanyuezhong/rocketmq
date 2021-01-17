@@ -126,6 +126,10 @@ public class UtilAll {
             cal.get(Calendar.MILLISECOND));
     }
 
+    /**
+     * 获取明天凌晨的时间戳
+     * @return
+     */
     public static long computeNextMorningTimeMillis() {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(System.currentTimeMillis());

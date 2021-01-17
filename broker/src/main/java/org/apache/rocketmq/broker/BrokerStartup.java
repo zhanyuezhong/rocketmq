@@ -177,7 +177,7 @@ public class BrokerStartup {
                 default:
                     break;
             }
-
+            //啥意思没看懂
             if (messageStoreConfig.isEnableDLegerCommitLog()) {
                 brokerConfig.setBrokerId(-1);
             }
